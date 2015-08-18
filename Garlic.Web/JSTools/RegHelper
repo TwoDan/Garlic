@@ -1,0 +1,41 @@
+function trim(str) {
+    return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+function checkPhone(phone) {
+    var result = true;
+    if (phone.length != 11) {
+        result = false;
+    }
+    var myreg = /^(((13[0-9]{1})|(14[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+    if (!myreg.test(phone)) {
+        result = false;
+    }
+    return result;
+}
+
+function isNum(str){
+    var reg=/^[0-9]+$/;
+    return reg.test(str);
+}
+//验证是否是符号,\u开头的是unicode
+function isSymbol(str){
+    var reg=/^([\u0021-\u002F]|[\u003A-\u0040])+$/;
+    return reg.test(str);
+}
+
+function isEnlish(str){
+    var reg=/^([A-Z]|[a-z])+$/;
+    return reg.test(str);
+}
+
+function isChineseChar(str){   
+    var reg = /^[\u4E00-\u9FA5]+$/;
+    return reg.test(str);
+}
+
+function isEnglishOrChinese(str) {
+    var reg = /^([\u4E00-\uFA29]|[a-z]|[A-Z]*)+$/;
+    return reg.test(str);
+}
+
