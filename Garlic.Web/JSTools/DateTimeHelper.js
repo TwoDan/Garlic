@@ -42,7 +42,7 @@ function GetDateDiff(startDate, endDate) {
     return dates;
 }
 
-//时间戳转化
+//时间戳转化 时间类型的数据在json序列化后会变成“/Date(700000+0500)/”格式的时间戳
 function getLocalTime(nS) {
     var re=String(nS);
     re.replace("/Date(", "");
