@@ -42,3 +42,10 @@ function GetDateDiff(startDate, endDate) {
     return dates;
 }
 
+//时间戳转化
+function getLocalTime(nS) {
+    var re=String(nS);
+    re.replace("/Date(", "");
+    re.replace(")/", "");
+    return new Date(parseInt(nS) * 1000).toLocaleString().substr(0, 17)
+}
