@@ -1,0 +1,47 @@
+    //时间对象封装
+    function myDate2(date){
+        this.date = new Date(date);
+        this.Y = function(){
+            return this.date.getFullYear();
+        }
+        this.m = function(){
+            var m = (this.date.getMonth()+1).toString();
+            if(m.length==1) return "0"+m;
+            return m;
+        }
+        this.d = function(){
+            var d = this.date.getDate().toString();
+            if(d.length==1) return "0"+d;
+            return d;
+        }
+    }
+ 
+    //时间对象格式化
+    myDate2.prototype.Format = function(format){
+        if(format=="yyyy"){
+            return this.Y();
+        }else if(format=="yyyy-mm"){
+            return this.Y()+"-"+this.m();
+        }else if(format=="yyyy-mm-dd"){
+            return this.Y()+"-"+this.m()+"-"+this.d();
+        }
+        throw new error("非法的格式");
+    }
+ 
+    //时间对象加减
+    myDate2.prototype.AddDate = function(Y,m,d){
+        this.date.setFullYear(parseInt(this.Y())+Y);
+        this.date.setMonth(parseInt(this.m())+m-1);
+        this.date.setDate(parseInt(this.d())+d);
+        return this;
+    }
+ 
+    //工厂
+    function myDate(date){
+        return new myDate2(date);
+    }
+ 
+    //举个栗子
+    var d = myDate("2016-02-14");//将字符串时间实例化myDate2对象
+    d.AddDate(0,0,10);//加10天
+    console.log(d.Format("yyyy-mm-dd"));//格式化输出2016-02-24
